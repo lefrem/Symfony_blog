@@ -53,7 +53,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="list_article")
      */
-    public function listarticle(Request $request)
+    public function listArticle(Request $request)
     {
         $myArticle = $this->getDoctrine()->getRepository(Article::class)->findBy(array('published'=>1));
         $articles=$myArticle;
@@ -63,6 +63,24 @@ class ArticleController extends AbstractController
             'article' => $articles
         ]);
     }
+
+    /**
+     * @Route("/User_Article/{id}", name="User_Article")
+     */
+    public function userArticle($id)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $myArticle = $this->getDoctrine()->getRepository(Article::class)->findBy(array('user'=>$user->id));
+        $articles=$myArticle;
+
+        dump($user);
+        return $this->render('article/user_article.html.twig', [
+            'controller_name' => 'BlogController',
+            'article' => $articles
+        ]);
+    }
+
+    
 
 
 

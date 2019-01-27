@@ -1,0 +1,19 @@
+{% block body %}
+
+   {% for articles in article %}
+    <p><b>--------------------------------------------------------------</b></p>
+
+    <h1>{{ article.title }}</h1>
+    <p>Created At {{ article.createdAt | date('d/m/Y') }} by {{article.user.email}}</p>
+    <iframe
+            width="300"
+            height="200"
+            src={{article.url}}>
+        </iframe>
+    <p>Description : {{article.description}}</p>
+    <p>Category : {{article.description}}</p>
+
+    {% endfor %}
+
+
+{% endblock %}

@@ -18,7 +18,7 @@
     </div>
     <p>Category : {{articles.description}}</p>
     
-    <p>Created At {{ articles.createdAt | date('d/m/Y') }} by {{articles.user.email}}</p>
+    <p>Created At {{ articles.createdAt | date('d/m/Y') }} by <a href="{{ path('User_Article',{'id': articles.user.id } ) }}">{{articles.user.email}}<a></p>
 
 {% endfor %}
 
