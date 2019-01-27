@@ -13,8 +13,9 @@ Désoler pour les quelques minutes de retard je finnisais la fonction remove d'a
 	* impossibiliter d'ecrire un article sans etre connecter
 	* logout
 
-#Taches Réalisées
+#Taches non Réalisées
 	* tout la partie As Admin and only Admin (ROLE_ADMIN) et As Server Administrator ainsi que la navbar
+	* commentaire du code tout juste commencé
 
 #Autre 
 	* TP realiser sans docker
