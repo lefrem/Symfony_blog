@@ -69,14 +69,30 @@ class ArticleController extends AbstractController
      */
     public function userArticle($id)
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $myArticle = $this->getDoctrine()->getRepository(Article::class)->findBy(array('user'=>$user->id));
+        dump($id);
+        $myArticle = $this->getDoctrine()->getRepository(Article::class)->findBy(array('user'=>$id));
         $articles=$myArticle;
 
-        dump($user);
+        dump($articles);
         return $this->render('article/user_article.html.twig', [
             'controller_name' => 'BlogController',
             'article' => $articles
+        ]);
+    }
+
+    /**
+     * @Route("/Remove_Article/{id}", name="Remove_Article")
+     */
+    public function removeArticle(Request $request, Article $article=NULL)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($article);
+        $entityManager->remove($article);
+        $entityManager->flush();
+        
+
+        return $this->render('article/remove_article.html.twig', [
+            'controller_name' => 'ArticleController',
         ]);
     }
 

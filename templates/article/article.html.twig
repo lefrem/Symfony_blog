@@ -2,6 +2,7 @@
 
     {% if app.user == article.user %}
         <a href="{{ path('Edit_Article',{'id': article.id} ) }}">edit</a>
+        <a href="{{ path('Remove_Article',{'id': article.id} ) }}">remove</a>
     {% endif %}
 
     <h1>{{ article.title }}</h1>
