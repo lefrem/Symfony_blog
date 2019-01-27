@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+ {% if app.user %}
+ {{ form_start(form) }}
+ {{ form_row(form.title) }}
+ {{ form_row(form.published) }}
+ {{ form_row(form.url) }}
+ <p><b>For add a video youtube go on <a href="https://www.youtube.com/">YouTube</a> select your video and run it.<br> 
+ After right click on video and select copy URL video.<br>
+ After cut the link here and replace "https://youtu.be/" by "https://www.youtube.com/embed/" <br>
+ and keep the id of video and is good</b></p>
+ {{ form_row(form.description) }}
+ {{ form_row(form.category) }}
+ {{ form_row(form.submit) }}
+ {{ form_end(form) }}
+ {% else %}
+ <p> I'm sorry you are not connected go <a href="{{ path('login') }}"><b>Login</b></a> or <a href="{{ path('register') }}"><b>register</b></a>
+ {% endif %}
+
+
+{% endblock %}

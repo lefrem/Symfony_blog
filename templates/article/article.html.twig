@@ -1,0 +1,20 @@
+{% block body %}
+
+    {% if app.user == article.user %}
+        <a href="{{ path('Edit_Article',{'id': article.id} ) }}">edit</a>
+    {% endif %}
+
+    <h1>{{ article.title }}</h1>
+    <p>Created At {{ article.createdAt | date('d/m/Y') }} by {{article.user.email}}</p>
+    <iframe
+            width="300"
+            height="200"
+            src={{article.url}}>
+        </iframe>
+    <p>Description : {{article.description}}</p>
+    <p>Category : {{article.description}}</p>
+
+
+
+
+{% endblock %}

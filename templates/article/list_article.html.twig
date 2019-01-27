@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+{% for articles in article %}
+<p><b>--------------------------------------------------------------</b></p>
+
+    <a href="{{ path('Article',{'id': articles.id} ) }}"><h1>{{ articles.title }}</h1></a>
+    <div style="display:flex">
+        <iframe
+            width="300"
+            height="200"
+            src={{articles.url}}>
+        </iframe>
+        <p>Description : {{articles.description}}</p>
+    </div>
+    <p>Category : {{articles.description}}</p>
+    
+    <p>Created At {{ articles.createdAt | date('d/m/Y') }} by {{articles.user.email}}</p>
+
+{% endfor %}
+
+
+
+{% endblock %}
