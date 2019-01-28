@@ -17,10 +17,13 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/register", name="register")
+     * @Route("/Edit_User/{id}", name="Edit_User")
      */
-    public function index(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder)
+    public function index(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $passwordEncoder, User $user = null)
     {
-        $user = new User();
+        if(!$user){
+            $user = new User();
+        }
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 

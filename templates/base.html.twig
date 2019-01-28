@@ -6,6 +6,20 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+
+    <div>
+        <a href="{{path('list_article')}}">home</a>
+        {% if app.user %}
+        <a href="{{path('logout')}}">logout</a>
+        <a href="{{path('New_Article')}}">new article</a>
+        <a href="{{path('Edit_User',{'id': app.user.id})}}">edit profil</a>
+        <a href="{{path('User_Article',{'id': app.user.id})}}">My list article</a>
+        {% else %}
+        <a href="{{path('login')}}">login</a>
+        <a href="{{path('register')}}">register</a>
+        {% endif %}
+    </div>
+
         {% for label, messages in app.flashes %}
             {% for message in messages %}
                 <div class="flash-{{ label }}">

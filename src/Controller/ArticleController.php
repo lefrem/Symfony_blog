@@ -21,7 +21,8 @@ class ArticleController extends AbstractController
         }
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-            if ($form->isSubmitted()) {
+
+        if ($form->isSubmitted()) {
             $entityManager = $this->getDoctrine()->getManager();
             $article->setcreatedAt(new \DateTime());
             $article->setuser($this->getUser());
@@ -59,7 +60,6 @@ class ArticleController extends AbstractController
         $articles=$myArticle;
      
         return $this->render('article/list_article.html.twig', [
-            'controller_name' => 'BlogController',
             'article' => $articles
         ]);
     }
@@ -69,8 +69,23 @@ class ArticleController extends AbstractController
      */
     public function userArticle($id)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        dump($user);
+        if($user == "anon."){
+            $myArticle = $this->getDoctrine()->getRepository(Article::class)->findBy(array('user'=>$id,'published'=>1));
+        }
+        else
+        {
+            if($user->getid($id)== $id)
+            {
+                $myArticle = $this->getDoctrine()->getRepository(Article::class)->findBy(array('user'=>$id));
+            }
+            else 
+            {
+                $myArticle = $this->getDoctrine()->getRepository(Article::class)->findBy(array('user'=>$id,'published'=>1));
+            }
+        }
         dump($id);
-        $myArticle = $this->getDoctrine()->getRepository(Article::class)->findBy(array('user'=>$id));
         $articles=$myArticle;
 
         dump($articles);

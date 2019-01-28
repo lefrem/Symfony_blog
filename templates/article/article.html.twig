@@ -1,3 +1,5 @@
+{% extends 'base.html.twig' %}
+
 {% block body %}
 
     {% if app.user == article.user %}
@@ -13,7 +15,7 @@
             src={{article.url}}>
         </iframe>
     <p>Description : {{article.description}}</p>
-    <p>Category : {{article.description}}</p>
+    <p>Category : {{article.category}}</p>
 
 
 
